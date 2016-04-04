@@ -14,9 +14,8 @@
         <h1>Crappy Recipe Holder</h1>
       </div>
       <div ng-repeat="recipe in recipes">
-        {{recipe.title}} Link - <a href={{recipe.url}}>{{recipe.url}}</a>
+        <h3 ng-click="removeRecipe(title)">{{recipe.title}} <small> <a href={{recipe.url}}>{{recipe.url}}</a></small></h3>
       </div>
-
 
         <form ng-submit="addNew()"
           style="margin-top:30px;">
