@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/dramich/DatUglyApp#readme",
   "dependencies": {
+    "express": "^4.13.4",
     "node": "0.0.0"
   }
 }

@@ -1,6 +1,6 @@
 var http = require('http');
 
-var PORT=8080; 
+var port=process.env.PORT || 8080; 
 
 function handleRequest(request, response){
     response.end('It Works!! Path Hit: ' + request.url);
