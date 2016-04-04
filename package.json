@@ -1,0 +1,22 @@
+{
+  "name": "new",
+  "version": "1.0.0",
+  "description": "test",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dramich/DatUglyApp.git"
+  },
+  "author": "Dan Ramich",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dramich/DatUglyApp/issues"
+  },
+  "homepage": "https://github.com/dramich/DatUglyApp#readme",
+  "dependencies": {
+    "node": "0.0.0"
+  }
+}
