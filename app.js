@@ -1,13 +1,23 @@
-var http = require('http');
+//var http = require('http');
+var express = require('express')
+var app = express();
+var path = require('path');
 
 var port=process.env.PORT || 8080; 
 
-function handleRequest(request, response){
-    response.end('It Works!! Path Hit: ' + request.url);
-}
+// function handleRequest(request, response){
+//     response.end('It Works!! Path Hit: ' + request.url);
+// }
 
-var server = http.createServer(handleRequest);
+// var server = http.createServer(handleRequest);
 
-server.listen(PORT, function(){
-    console.log("Server listening on: http://localhost:%s", PORT);
+// server.listen(PORT, function(){
+//     console.log("Server listening on: http://localhost:%s", PORT);
+// });
+
+app.get('/', function(req, res){
+  console.log('stuff')
+  res.sendFile(path.join(__dirname + '/public/index.html'))
 });
+
+app.listen(8080);
