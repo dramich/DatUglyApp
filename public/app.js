@@ -6,7 +6,7 @@ app.controller('uglyController', function($scope, recipeFact){
   //   {title: 'test2', url: 'www.yay2.com'}
   // ];
     $scope.getAll = function (){
-      return recipeFact.getAll()
+       recipeFact.getAll()
       .then(function(data){
         $scope.recipes = data
       })
@@ -15,7 +15,23 @@ app.controller('uglyController', function($scope, recipeFact){
       })
     }
 
-    $scope.addNew = recipeFact.addNew;
+    $scope.addNew = function(){
+      var data = {
+      visits: 0,
+      link: $scope.link,
+      title: $scope.title,
+      picURL: 'NA'
+    }
+      recipeFact.addNew(data)
+      .then(function(){
+        $scope.getAll();
+      })
+      .catch(function(err){
+        console.err(err);
+      })
+    }
+
+
     $scope.removeRecipe = recipeFact.removeRecipe;
     console.log("Ugly Controller reporting for duty.");
     
@@ -46,13 +62,13 @@ app.factory('recipeFact', function($http){
     this.recipes.splice(this.recipes.indexOf(recipe), 1);
   }
 
-  service.addNew = function(){
-    var data = {
-      visits: 0,
-      link: this.link,
-      title: this.title,
-      picURL: 'NA'
-    }
+  service.addNew = function(data){
+    // var data = {
+    //   visits: 0,
+    //   link: this.link,
+    //   title: this.title,
+    //   picURL: 'NA'
+    // }
 
     return $http({
       method: 'POST',
