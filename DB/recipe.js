@@ -1,7 +1,7 @@
 var db = require('config.js');
 var mongoose = require('mongoose');
 
-var recipeSchema - mongoose.Schema({
+var recipeSchema = mongoose.Schema({
   visits: Number, 
   link: String,
   title: String,

@@ -7,7 +7,7 @@ app.controller('uglyController', function($scope, recipeFact){
   ];
     // $scope.recipes = recipeFact.data
     $scope.addNew = recipeFact.addNew;
-    $scope.removeRecipe = recipeFact.removeRecipe
+    $scope.removeRecipe = recipeFact.removeRecipe;
    console.log("Ugly Controller reporting for duty.");
 });
 
