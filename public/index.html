@@ -9,10 +9,12 @@
 
   </head>
   <body ng-controller="uglyController">
+     
     <div class="col-md-6 col-md-offset-3">   
       <div id="main">
         <h1>Crappy Recipe Holder</h1>
       </div>
+      <p>Click to remove a recipe</p>  
       <div ng-repeat="recipe in recipes">
         <h3 ng-click="removeRecipe(title)">{{recipe.title}} <small> <a href={{recipe.url}}>{{recipe.url}}</a></small></h3>
       </div>
