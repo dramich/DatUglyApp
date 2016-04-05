@@ -16,7 +16,7 @@
       </div>
       <p>Click to remove a recipe</p>  
       <div ng-repeat="recipe in recipes">
-        <h3 ng-click="removeRecipe(title)">{{recipe.title}} <small> <a href={{recipe.url}}>{{recipe.url}}</a></small></h3>
+        <h3 ng-click="removeRecipe(title)">{{recipe.title}} <small> <a href={{recipe.url}}>{{recipe.link}}</a></small></h3>
       </div>
 
         <form ng-submit="addNew()"

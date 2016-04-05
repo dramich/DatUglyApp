@@ -5,11 +5,20 @@ app.controller('uglyController', function($scope, recipeFact){
   //   {title: 'test', url: 'www.yay.com'},
   //   {title: 'test2', url: 'www.yay2.com'}
   // ];
-    $scope.getAll = recipeFact.getAll;
-    $scope.recipes = recipeFact.data;
+    $scope.getAll = function (){
+      return recipeFact.getAll()
+      .then(function(data){
+        $scope.recipes = data
+      })
+      .catch(function(err){
+        console.err(err);
+      })
+    }
+
     $scope.addNew = recipeFact.addNew;
     $scope.removeRecipe = recipeFact.removeRecipe;
     console.log("Ugly Controller reporting for duty.");
+    
     var init = function(){
       $scope.getAll();
       console.log('controller '+ $scope.recipes)
@@ -20,7 +29,7 @@ app.controller('uglyController', function($scope, recipeFact){
 app.factory('recipeFact', function($http){
   var service = {};
   
-  service.data = [];
+  service.data = [{title: 'test', url: 'www.yay.com'}];
 
   service.getAll = function(){
     return $http({
@@ -29,7 +38,7 @@ app.factory('recipeFact', function($http){
     })
     .then(function(resp){
       console.log(resp.data)
-      service.data = resp.data
+      return resp.data
     })
   }
 
