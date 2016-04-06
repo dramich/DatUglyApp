@@ -19,8 +19,8 @@
       </div>
       <p>Click to remove a recipe</p>  
 
-        <form ng-submit="addNew()"
-          style="margin-top:30px;">
+        <form name="newRecipe" ng-submit="addNew()"
+          style="margin-top:30px;" novalidate="">
           <h3>Add a new recipe</h3>
 
           <div class="form-group">
@@ -32,16 +32,17 @@
           <div class="form-group">
             <input type="text"
             class="form-control"
-            placeholder="Link"
-            ng-model="link"></input>
+            placeholder="Link"  
+            ng-model="link" ng-class="{'error': newRecipe.$invalid && newRecipe.$dirty}"></input>
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+        
         <br>
         <h2 class="bottom">Your Current Recipes</h2>
         
         <div ng-repeat="recipe in recipes">
-          <h3 ng-click="removeRecipe(title)">{{recipe.title}} <small> <a href={{recipe.url}}>{{recipe.link}}</a></small></h3>
+          <h3 ng-click="removeRecipe(this.recipe._id)">{{recipe.title}} <small> <a href={{recipe.url}}>{{recipe.link}}</a></small></h3>
         </div>
       </div>
   </body>

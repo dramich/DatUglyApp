@@ -47,5 +47,19 @@ app.post('/data', function(req, res){
   // res.end('end')
 })
 
+app.put('/data', function(req, res){
+  var recipeID = req.body.recipeID
+  console.log(recipeID)
+  recipe.find({ _id:recipeID }).remove(function(err, result){
+    if(err){
+      res.send(err);
+      res.end();
+    } else {
+      res.send(result);
+      res.end();
+    }
+  })
+})
+
 app.listen(port);
 

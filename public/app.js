@@ -11,7 +11,7 @@ app.controller('uglyController', function($scope, recipeFact){
         $scope.recipes = data
       })
       .catch(function(err){
-        console.err(err);
+        console.log(err);
       })
     }
 
@@ -24,61 +24,77 @@ app.controller('uglyController', function($scope, recipeFact){
     }
       recipeFact.addNew(data)
       .then(function(){
+        $scope.link = '';
+        $scope.title = '';
         $scope.getAll();
       })
       .catch(function(err){
-        console.err(err);
+        console.log(err);
       })
     }
 
 
-    $scope.removeRecipe = recipeFact.removeRecipe;
+    $scope.removeRecipe = function(recipeID){
+      console.log(recipeID);
+      recipeFact.removeRecipe(recipeID)
+      .then(function(){
+        $scope.getAll();
+      })
+      .catch(function(err){
+        console.log(err);
+      })
+    }
+    
     console.log("Ugly Controller reporting for duty.");
     
     var init = function(){
       $scope.getAll();
-      console.log('controller '+ $scope.recipes)
     }
     init();
 });
 
 app.factory('recipeFact', function($http){
   var service = {};
-  
-  service.data = [{title: 'test', url: 'www.yay.com'}];
-
+  //service.data = [{title: 'test', url: 'www.yay.com'}];
   service.getAll = function(){
     return $http({
       method: 'GET',
       url: '/data'
     })
     .then(function(resp){
-      console.log(resp.data)
+      //console.log(resp.data)
       return resp.data
     })
   }
 
-  service.removeRecipe = function(recipe){
-    this.recipes.splice(this.recipes.indexOf(recipe), 1);
+  service.removeRecipe = function(recipeID){
+    //Recipe.find({ id:recipeID }).remove().exec()
+      console.log('fact ID ' + recipeID)
+     return $http({
+      method: 'PUT',
+      url: '/data',
+      data: {recipeID : recipeID}
+    })
+    .then(function(resp){
+      return resp.data
+    })
+    .catch(function(err){
+      console.log(err);
+    })
+    //console.log('into the factory')
   }
 
   service.addNew = function(data){
-    // var data = {
-    //   visits: 0,
-    //   link: this.link,
-    //   title: this.title,
-    //   picURL: 'NA'
-    // }
-
     return $http({
       method: 'POST',
       url: '/data',
       data: data
     })
     .then(function(resp){
-      console.log(resp);
+      //console.log(resp);
       return resp.data;
     });
   };
+
   return service
 })
